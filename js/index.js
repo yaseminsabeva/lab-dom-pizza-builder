@@ -100,18 +100,18 @@ function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
   const totalPrice = document.querySelector('.panel.price > strong');
   let total = basePrice;
-  const lis = document.querySelectorAll('.panel.price > ul > li');
+  const ul = document.querySelector('.panel.price > ul');
+  ul.textContent = '';
   for (const ingredient in state) {
     if (state[ingredient]) {
       total += ingredients[ingredient].price;
-    } else {
+      const li = document.createElement('li');
+      li.textContent = `$${ingredients[ingredient].price} ${ingredients[
+        ingredient
+      ].name.toLowerCase()}`;
+      ul.appendChild(li);
     }
   }
-  for (const key in state) {
-    if (state[ingredient]) {
-    }
-  }
-
   totalPrice.textContent = `$${total}`;
 }
 
